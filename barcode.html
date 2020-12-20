@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS barcode</title>  	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="">
+  	<script src="JsBarcode.all.min.js"></script>
+  	<style>
+  		body {
+  			background-color: gainsboro;
+  			font-family: verdana;
+  		}
+  		#main {
+  			width: 1200px;
+  			height:600px;
+  			background-color: white;
+  			margin: auto;
+  			padding: 30px;
+  		}
+  		label {
+  			display: block;
+  		}
+  		#brcd1 {
+  			
+  		}
+  	</style>
+  	<script>
+  		function brcd1(){
+  			var inpt = document.getElementById('inpt1').value;
+  			if(inpt != ''){
+	  			JsBarcode("#brcd1", inpt, {
+	  				format: "CODE128",
+	  				width: 2,
+	  				height: 120,
+	  				font: "verdana",
+	  				fontOptions: "bold",
+	  				fontSize: 15, // 0 pour masquer texte
+	  				textAlign: "center",
+	  				textPosition: "bottom",
+	  				textMargin: 2,
+	  				background: "#ffffff",
+	  				lineColor: "#000000",
+	  				margin: 10,
+				});
+			document.getElementById('ptexte').innerHTML = inpt;
+			}
+			else{
+				location.reload();
+			}
+			document.getElementById('inpt1').value = '';
+			document.getElementById('inpt1').focus();
+  		}
+ 		
+  		function raz(){
+  			document.getElementById('inpt1').value = '';
+  			document.getElementById('ptexte').innerHTML = '&nbsp;';
+  			location.reload();
+  			//document.getElementById('inpt1').focus();
+  		}
+  	</script>
+</head>
+
+<body>
+	<div id="main">
+		<h1>Créer des barcodes avec JS barcode</h1>
+
+		<input type="text" id="inpt1" autofocus>
+		<input type="button" value="Go" onclick="brcd1()">
+		<input type="button" value="Raz" onclick="raz()">
+		<br><br><br>
+		<h4>Texte du gencod :</h4>
+		<p id="ptexte">&nbsp;</p>
+		<br>
+		<h4>Gencod :</h4>
+		<img id="brcd1">
+		
+	</div>
+</body>
+</html>
